@@ -12,8 +12,8 @@ int loadMedia();
 void closeSDL();
 
 //Window constants
-const int WIDTH = 640;
-const int HEIGHT = 480;
+const int WIDTH = 800;
+const int HEIGHT = 800;
 const char TITLE[] = "pong";
 SDL_Window* window = NULL;
 SDL_Renderer* rend = NULL;
@@ -104,11 +104,11 @@ int main(){
     int objHeight = 0;
     int objWidth = 0;
     int paddleSpeed  = FPS/3;
-    int puckSpeed = FPS/6;
+    int puckSpeed = FPS/4;
     SDL_QueryTexture(paddleTexture, NULL, NULL, &objWidth, &objHeight);
 
     struct GameObject player = createGameObject(paddleTexture, "player", objWidth, HEIGHT/2 - objHeight/2, paddleSpeed);
-    struct GameObject cpu = createGameObject(paddleTexture, "cpu", WIDTH - (2 * objWidth), HEIGHT/2 - objHeight/2, paddleSpeed * 5/6);
+    struct GameObject cpu = createGameObject(paddleTexture, "cpu", WIDTH - (2 * objWidth), HEIGHT/2 - objHeight/2, paddleSpeed);
 
     SDL_QueryTexture(puckTexture, NULL, NULL, &objWidth, &objHeight);
     struct GameObject puck = createGameObject(puckTexture, "puck", WIDTH/2 - objWidth/2, HEIGHT/2 - objHeight/2, puckSpeed);
