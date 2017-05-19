@@ -30,9 +30,12 @@ void destroyGameObject(struct GameObject* obj){
 
 void updatePaddleDirection(struct GameObject* obj, int dependency, int heightBound){  
     int dy = obj->bounds.h / 8;
+    if (strcmp(obj->name, "cpu") == 0){
+        dy = obj->bounds.h / 4;
+    }
 
-    if(obj->bounds.y < 0) obj->bounds.y = 0;
-    if(obj->bounds.y > heightBound - obj->bounds.h) obj->bounds.y = heightBound - obj->bounds.h;
+    if (obj->bounds.y < 0) obj->bounds.y = 0;
+    if (obj->bounds.y > heightBound - obj->bounds.h) obj->bounds.y = heightBound - obj->bounds.h;
 
     if (dependency < obj->bounds.y + obj->bounds.h/2 -dy){
         obj->direction.moveUp = 1;
