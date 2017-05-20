@@ -12,8 +12,8 @@ int loadMedia();
 void closeSDL();
 
 //Window constants
-const int WIDTH = 800;
-const int HEIGHT = 800;
+const int WIDTH = 600;
+const int HEIGHT = 600;
 const char TITLE[] = "pong";
 SDL_Window* window = NULL;
 SDL_Renderer* rend = NULL;
@@ -169,8 +169,6 @@ int main(){
         //handle puck intersection
         handleGameObjectIntersection(&puck, &player);
         handleGameObjectIntersection(&puck, &cpu);
-        
-        //
 
         //draw GameObjects to the screen
         SDL_RenderCopy(rend, background, NULL, NULL);
