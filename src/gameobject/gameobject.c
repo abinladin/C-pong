@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include "gameobject.h"
+#define IS_TRACKING 1
 
 struct GameObject createGameObject(SDL_Texture* texture, char* name, int initX, int initY, int speed){  
     struct GameObject obj;
@@ -58,11 +59,28 @@ void updatePaddleDirection(struct GameObject* obj, int dependency, int heightBou
 }
 
 
+//[debug] Counters that will count how often statements int updatePuckDirection() are called:
+#if IS_TRACKING
+int touchLeftWindowEdge = 0;
+int touchRightWindowEdge = 0;
+int touchTopWindowEdge = 0;
+int touchBottomWindowEdge = 0;
 
+void printTrackedVariables(){
+    printf("PaddleTouches:\n Left: %d\n Right: %d\n Top: %d\n Bottom: %d\n", touchLeftWindowEdge, touchRightWindowEdge, touchTopWindowEdge, touchBottomWindowEdge);
+}
+#endif
 int updatePuckDirection(struct GameObject* obj, int widthBound, int heightBound){ 
     
     //conditions ordered from most likely to least likely
+
     if (obj->bounds.y < 0){
+
+        #if IS_TRACKING
+        touchTopWindowEdge++;
+        printTrackedVariables();
+        #endif
+
     	obj->bounds.y = 1;
         obj->direction.moveDown = 1;
         obj->direction.moveUp = 0;
@@ -70,6 +88,12 @@ int updatePuckDirection(struct GameObject* obj, int widthBound, int heightBound)
     }
 
     if (obj->bounds.y > heightBound - obj->bounds.h){
+
+        #if IS_TRACKING
+        touchBottomWindowEdge++;
+        printTrackedVariables();
+        #endif
+
     	obj->bounds.y = heightBound - obj->bounds.h-1;
         obj->direction.moveDown = 0;
         obj->direction.moveUp = 1;
@@ -78,15 +102,24 @@ int updatePuckDirection(struct GameObject* obj, int widthBound, int heightBound)
     
     if (obj->bounds.x < 0 - obj->bounds.w){
 
+        #if IS_TRACKING
+        touchLeftWindowEdge++;
+        printTrackedVariables();
+        #endif
+
         obj->bounds.x = widthBound/2 - obj->bounds.w/2;
         obj->bounds.y = heightBound/2 - obj->bounds.h/2;
-
         obj->direction.moveLeft = 0;
         obj->direction.moveRight = 1;
         return 1;
     }
 
     if (obj->bounds.x > widthBound){  
+
+        #if IS_TRACKING
+        touchRightWindowEdge++;
+        printTrackedVariables();
+        #endif
 
         obj->bounds.x = widthBound/2 - obj->bounds.w/2;
         obj->bounds.y = heightBound/2 - obj->bounds.h/2;
