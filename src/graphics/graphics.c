@@ -15,7 +15,6 @@ SDL_Texture* Graphics_LoadTexture(SDL_Renderer* rend, char* path){
 
     surface = IMG_Load(relPath);
     
-
     if (surface == NULL){
         printf("[Surface] Failed to load %s! SDL_GetError: %s\n", relPath, SDL_GetError());
         free(relPath);
