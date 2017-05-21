@@ -68,6 +68,7 @@ int touchBottomWindowEdge = 0;
 
 void printTrackedVariables(){
     printf("PaddleTouches:\n Left: %d\n Right: %d\n Top: %d\n Bottom: %d\n", touchLeftWindowEdge, touchRightWindowEdge, touchTopWindowEdge, touchBottomWindowEdge);
+	for (int i = 0; i < 10; i++) printf("\n");
 }
 #endif
 int updatePuckDirection(struct GameObject* obj, int widthBound, int heightBound){ 
