@@ -11,7 +11,7 @@ typedef struct GameObject{
         int moveLeft;
         int moveRight;
     } direction;
-};
+} GameObject;
 
 struct GameObject createGameObject(SDL_Texture* texture, char* name, int initX, int initY, int speed);
 void destroyGameObject(struct GameObject* obj);
