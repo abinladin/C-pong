@@ -1,6 +1,6 @@
 #include <SDL2/SDL.h>
 #include "gameobject.h"
-#define IS_TRACKING 1
+#define IS_TRACKING 0
 
 struct GameObject createGameObject(SDL_Texture* texture, char* name, int initX, int initY, int speed){  
     struct GameObject obj;
