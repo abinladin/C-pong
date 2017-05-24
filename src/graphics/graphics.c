@@ -6,7 +6,14 @@ SDL_Texture* Graphics_LoadTexture(SDL_Renderer* rend, char* path){
 	SDL_Surface* surface = NULL;
 	SDL_Texture* texture = NULL;
 	
-	surface = IMG_Load(path);
+	char* topDir = "../";
+	char* relPath = malloc(sizeof topDir + sizeof path);
+	
+	strcpy(relPath, topDir);
+	strcat(relPath, path);
+
+	surface = IMG_Load(relPath);
+	free(relPath);
 	if(surface == NULL){
 		printf("[Surface] failed to load %s! SDL_Error: %s", path, SDL_GetError());
 		return NULL;
