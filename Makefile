@@ -4,11 +4,9 @@ EXEC = run
 
 SRC = src/main/main.c src/graphics/graphics.c src/graphics/graphics.h src/gameobject/gameobject.c src/gameobject/gameobject.h
 
-all: linux windows
+all: linux
 
 linux:
 	$(CC) $(SRC) $(CFLAGS) -o ./run/$(EXEC)Linux
 
-windows:
-	$(CC) $(SRC) $(CFLAGS) -o ./run/$(EXEC)Windows.exe
 
