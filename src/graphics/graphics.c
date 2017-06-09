@@ -11,6 +11,12 @@ SDL_Texture* Graphics_LoadTexture(SDL_Renderer* rend, char* path){
 	SDL_Surface* surface = NULL;
 	SDL_Texture* texture = NULL;
 	
+        /*
+        * It would have been better if the executable was located in /C-pong/, rather than /C-pong/run/. If that were
+        * the case, then I would not need to dynamically allocate memory here (It would also be the standard). However, 
+        * this program is a portfolio piece and as such, I wished to showcase my knowledge of the C language.
+        */
+        
 	char* topDir = "../";
 	char* relPath = malloc(sizeof topDir + sizeof path);
 	
