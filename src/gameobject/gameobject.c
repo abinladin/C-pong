@@ -32,7 +32,12 @@ void destroyGameObject(struct GameObject* obj){
     free(obj->name);
 }
 
-
+/*
+* Both the player paddle and the cpu paddle rely on a similar movement logic- they
+* depend on a certain int. For the Player paddle, that 'dependency' is the y
+* position of the mouse. for the CPU paddle, that dependency is the y value of the 
+* paddle. Thus, the movement for both paddles can be handled by the same function.
+*/
 void updatePaddleDirection(struct GameObject* obj, int dependency, int heightBound){  
     int dy = obj->bounds.h / 8;
     if (strcmp(obj->name, "cpu") == 0){
@@ -63,7 +68,7 @@ void updatePaddleDirection(struct GameObject* obj, int dependency, int heightBou
 }
 
 
-//[debug] Counters that will count how often statements int updatePuckDirection() are called:
+//[optimization] Counters that will count how often statements int updatePuckDirection() are called:
 #if CHECKING_OPTIMIZATION
 int touchLeftWindowEdge = 0;
 int touchRightWindowEdge = 0;
@@ -155,11 +160,21 @@ int updatePuckDirection(struct GameObject* obj, int widthBound, int heightBound)
 }
 
 
-
+/*
+* Checks if there is an intersection between the puck and either paddle. 
+*/
 void handleGameObjectIntersection(struct GameObject* puck, struct GameObject* paddle){
-	if ( strcmp(paddle->name, "player") == 0 && SDL_HasIntersection(&puck->bounds, &paddle->bounds) == SDL_TRUE ){
-		puck->direction.moveLeft = 0;
+	
+        if ( strcmp(paddle->name, "player") == 0 && SDL_HasIntersection(&puck->bounds, &paddle->bounds) == SDL_TRUE ){
+        // Reverse the puck's x direction		
+        puck->direction.moveLeft = 0;
 		puck->direction.moveRight = 1;
+        /* 
+        * Set the y direction of the puck to be the same as the y direction of the
+        * paddle at the time of the intersection. if the paddle is not moving ( i.e
+        * both if statement conditions evaluate to false) then the puck's y direction
+        * remains the same as before.
+        */
 		if (paddle->direction.moveUp){
 			puck->direction.moveUp = 1;
 			puck->direction.moveDown = 0;
@@ -171,8 +186,15 @@ void handleGameObjectIntersection(struct GameObject* puck, struct GameObject* pa
 	}
   	
   	if ( strcmp(paddle->name, "cpu") == 0 && SDL_HasIntersection(&puck->bounds, &paddle->bounds) == SDL_TRUE){
+        // Reverse the puck's x direction
 		puck->direction.moveLeft = 1;
 		puck->direction.moveRight = 0;
+        /* 
+        * Set the y direction of the puck to be the same as the y direction of the
+        * paddle at the time of the intersection. if the paddle is not moving ( i.e
+        * both if statement conditions evaluate to false) then the puck's y direction
+        * remains the same as before.
+        */
 		if (paddle->direction.moveUp){
 			puck->direction.moveUp = 1;
 			puck->direction.moveDown = 0;
