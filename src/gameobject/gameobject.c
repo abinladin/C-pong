@@ -1,3 +1,8 @@
+/*
+* Author: Abdullah Binladin
+* Date: 25 May 2017
+*/
+
 #include <SDL2/SDL.h>
 #include "gameobject.h"
 #define CHECKING_OPTIMIZATION 0
@@ -26,7 +31,6 @@ void destroyGameObject(struct GameObject* obj){
     SDL_DestroyTexture(obj->texture);
     free(obj->name);
 }
-
 
 
 void updatePaddleDirection(struct GameObject* obj, int dependency, int heightBound){  

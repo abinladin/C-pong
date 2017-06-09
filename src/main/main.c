@@ -1,3 +1,8 @@
+/*
+* Author: Abdullah Binladin
+* Date: 25 May 2017
+*/
+
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include "../graphics/graphics.h"
