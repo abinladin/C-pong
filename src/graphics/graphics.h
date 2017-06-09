@@ -1,6 +1,6 @@
 /*
 * Author: Abdullah Binladin
-* Date: 25 May 2017
+* Date: 22 May 2017
 */
 
 #include <SDL2/SDL.h>
