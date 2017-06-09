@@ -1,6 +1,6 @@
 #include <SDL2/SDL.h>
 #include "gameobject.h"
-#define IS_TRACKING 0
+#define CHECKING_OPTIMIZATION 0
 
 struct GameObject createGameObject(SDL_Texture* texture, char* name, int initX, int initY, int speed){  
     struct GameObject obj;
@@ -60,7 +60,7 @@ void updatePaddleDirection(struct GameObject* obj, int dependency, int heightBou
 
 
 //[debug] Counters that will count how often statements int updatePuckDirection() are called:
-#if IS_TRACKING
+#if CHECKING_OPTIMIZATION
 int touchLeftWindowEdge = 0;
 int touchRightWindowEdge = 0;
 int touchTopWindowEdge = 0;
@@ -77,7 +77,7 @@ int updatePuckDirection(struct GameObject* obj, int widthBound, int heightBound)
 
     if (obj->bounds.y < 0){
 
-        #if IS_TRACKING
+        #if CHECKING_OPTIMIZATION
         touchTopWindowEdge++;
         printTrackedVariables();
         #endif
@@ -90,7 +90,7 @@ int updatePuckDirection(struct GameObject* obj, int widthBound, int heightBound)
 
     if (obj->bounds.y > heightBound - obj->bounds.h){
 
-        #if IS_TRACKING
+        #if CHECKING_OPTIMIZATION
         touchBottomWindowEdge++;
         printTrackedVariables();
         #endif
@@ -103,7 +103,7 @@ int updatePuckDirection(struct GameObject* obj, int widthBound, int heightBound)
     
     if (obj->bounds.x < 0 - obj->bounds.w){
 
-        #if IS_TRACKING
+        #if CHECKING_OPTIMIZATION
         touchLeftWindowEdge++;
         printTrackedVariables();
         #endif
@@ -117,7 +117,7 @@ int updatePuckDirection(struct GameObject* obj, int widthBound, int heightBound)
 
     if (obj->bounds.x > widthBound){  
 
-        #if IS_TRACKING
+        #if CHECKING_OPTIMIZATION
         touchRightWindowEdge++;
         printTrackedVariables();
         #endif
