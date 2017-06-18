@@ -33,19 +33,19 @@ buildObjectFiles() {
         mkdir build
     fi
     
-    #TODO: Find a way to loop through array without hardcoding
+    #get the name of the file from the path without the file extention
     current_string=$(basename ${split_src_string[0]} .c)
     
     echo making  $current_string
     $CC $CFLAGS -c ${split_src_string[0]} -o ./build/${current_string}.o    
     
+    #TODO: Find a way to loop through array without hardcoding
     for i in {1..4}
     do
         if [ ! $(($i%2)) -eq 0 ]; then
              current_string=$(basename ${split_src_string[$i]} .c)
              echo making $current_string
              $CC $CFLAGS -c ${split_src_string[$i]} -o ./build/${current_string}.o
-
         fi
     done
 }
