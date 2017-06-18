@@ -20,12 +20,34 @@ src/graphics/graphics.c
 src/graphics/graphics.h
 "
 
+#SRC split into an array by newline
+IFS=$'\n' split_src_string=($SRC)
+
+# array of source file filenames
+
+
 # functions
 buildObjectFiles() {
+    
     if [ ! -d "build" ]; then
         mkdir build
     fi
     
+    #TODO: Find a way to loop through array without hardcoding
+    current_string=$(basename ${split_src_string[0]} .c)
+    
+    echo making  $current_string
+    $CC $CFLAGS -c ${split_src_string[0]} -o ./build/${current_string}.o    
+    
+    for i in {1..4}
+    do
+        if [ ! $(($i%2)) -eq 0 ]; then
+             current_string=$(basename ${split_src_string[$i]} .c)
+             echo making $current_string
+             $CC $CFLAGS -c ${split_src_string[$i]} -o ./build/${current_string}.o
+
+        fi
+    done
 }
 
 # script start
