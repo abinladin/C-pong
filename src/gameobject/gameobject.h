@@ -20,6 +20,7 @@ typedef struct GameObject{
 
 struct GameObject createGameObject(SDL_Texture* texture, char* name, int initX, int initY, int speed);
 void destroyGameObject(struct GameObject* obj);
+
 void updatePaddleDirection(struct GameObject* obj, int dependency, int heightBound);
 int updatePuckDirection(struct GameObject* obj, int widthBound, int heightBound);
 void handleGameObjectIntersection(struct GameObject* puck, struct GameObject* paddle);
