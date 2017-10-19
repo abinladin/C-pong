@@ -115,7 +115,7 @@ int main(){
     puck.direction.moveUp = 1;
     
     //game loop
-    const int winningPoints = 7;
+    const int WINNING_POINTS = 7;
     int quit = 0;
     
     //player variables	
@@ -162,7 +162,7 @@ int main(){
 		    }
 		    
 		    printf("Player Points: %d\nCPU Points: %d\n\n", playerPoints, cpuPoints);
-		    if (playerPoints >= winningPoints || cpuPoints >= winningPoints){
+		    if (playerPoints >= WINNING_POINTS || cpuPoints >= WINNING_POINTS){
 		    	quit = 1;
 		    }	    
 		}
