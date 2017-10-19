@@ -115,11 +115,15 @@ int main(){
     puck.direction.moveUp = 1;
     
     //game loop
+    const int winningPoints = 7;
     int quit = 0;
+    
+    //player variables	
     int mouseY = 0;
     int playerPoints = 0;
+    
+    //CPU variables
     int cpuPoints = 0;
-    const int winningPoints = 7;
     
     while (!quit){
         SDL_RenderClear(rend);
