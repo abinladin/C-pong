@@ -41,8 +41,6 @@ int initSDL(){
     return 0;
 }
 
-
-
 int initWindow(){
     window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
     if (window == NULL){
@@ -53,8 +51,6 @@ int initWindow(){
     printf("initWindow() successful!\n");
     return 0;
 }
-
-
 
 int initRenderer(){
     int rendFlags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
@@ -68,8 +64,6 @@ int initRenderer(){
     printf("initRenderer() successful!\n");
     return 0;
 }
-
-
 
 int loadMedia(){
     background = Graphics_LoadTexture(rend, "res/wood.png");
@@ -96,8 +90,6 @@ void closeSDL(){
     SDL_Quit();
 }
 
-
-
 int main(){
     //initialization
     if (initSDL() != 0) return 1;
@@ -117,10 +109,10 @@ int main(){
 
     SDL_QueryTexture(puckTexture, NULL, NULL, &objWidth, &objHeight);
     struct GameObject puck = createGameObject(puckTexture, "puck", WIDTH/2 - objWidth/2, HEIGHT/2 - objHeight/2, puckSpeed);
-
-	//init puck movement
+    
+    //init puck movement
     puck.direction.moveLeft = 1;
-    puck.direction.moveUp =1;
+    puck.direction.moveUp = 1;
     
     //game loop
     int quit = 0;
